@@ -6,19 +6,16 @@
 - 떨림 제거: One Euro Filter
 - 마우스 제어: pyautogui
 
-## 다른 PC로 옮기기
-
-`.venv` 폴더는 빼고 복사하세요(PC마다 새로 만들어집니다). `hand_landmarker.task`(7.8MB)는
-첫 실행 때 자동으로 받지만, 인터넷이 안 되는 PC라면 같이 복사하면 됩니다.
-
 ## 설치 및 실행
 
 [uv](https://docs.astral.sh/uv/)를 사용합니다. Python이 없어도 uv가 알아서 받습니다.
+손 인식 모델(`hand_landmarker.task`, 7.8MB)은 첫 실행 때 자동으로 받습니다.
 
 ```powershell
-# uv 설치 (한 번만)
+# uv 설치 (한 번만, 설치 후 PowerShell 창을 새로 열기)
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 
+git clone https://github.com/KaburiCoder/hand-mouse.git
 cd hand-mouse
 uv run bench.py              # 1) CPU 성능 측정 (10초)
 uv run main.py --dry-run     # 2) 마우스는 그대로 두고 인식만 확인
@@ -32,6 +29,10 @@ python -m venv .venv; .venv\Scripts\activate
 pip install mediapipe opencv-python pyautogui
 python main.py
 ```
+
+git이 없으면 GitHub 페이지의 **Code → Download ZIP**으로 받아도 됩니다. 폴더를 다른 PC로 복사할 때는
+`.venv`를 빼고 복사하세요(PC마다 새로 만들어집니다). 인터넷이 안 되는 PC라면 `hand_landmarker.task`도
+같이 복사하면 됩니다.
 
 ## 제스처
 
@@ -108,3 +109,11 @@ Windows 11은 포커스 없는 백그라운드 프로세스를 저클럭이나 �
 ```powershell
 uv run pytest      # 가상 손 자세로 제스처 판정 검증 (웹캠 불필요)
 ```
+
+## 라이선스
+
+[MIT](LICENSE)
+
+사용한 라이브러리: [MediaPipe](https://github.com/google-ai-edge/mediapipe)(Apache 2.0),
+[OpenCV](https://github.com/opencv/opencv)(Apache 2.0), [PyAutoGUI](https://github.com/asweigart/pyautogui)(BSD 3-Clause).
+손 인식 모델은 Google MediaPipe에서 배포하는 Hand Landmarker 모델을 실행 시 내려받아 사용합니다.
