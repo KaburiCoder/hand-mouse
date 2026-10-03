@@ -1,0 +1,19 @@
+[project]
+name = "hand-mouse"
+version = "0.1.0"
+description = "웹캠 손 제스처로 마우스 제어 (MediaPipe Hand Landmarker, CPU 동작)"
+requires-python = ">=3.12"
+dependencies = [
+    "mediapipe>=1.0.1",
+    "opencv-python>=5.0.0.93",
+    "pyautogui>=0.9.54",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
